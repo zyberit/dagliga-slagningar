@@ -1,3 +1,5 @@
+<h1>Ladda upp csv-fil</h1>
+
 <form action="{% url 'ladda-upp' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
