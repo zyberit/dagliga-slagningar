@@ -1,5 +1,7 @@
 FROM grahamdumpleton/mod-wsgi-docker:python-3.5-onbuild
 
+VOLUME /app/db
+
 EXPOSE 80
 CMD [ "--access-log", "--log-to-terminal", "--url-alias", "/static", "static", "config/wsgi.py" ]
 

@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
+# from django.contrib import admin
+
+from sortera.views import ladda_upp, ladda_ner_lista, ladda_ner_fil
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^ladda-upp', ladda_upp, name="ladda-upp"),
+    url(r'^ladda-ner-lista', ladda_ner_lista, name="ladda-ner-lista"),
+    url(r'^ladda-ner-fil/(?P<filnamn>.*)/$', ladda_ner_fil, name="ladda-ner-fil"),
+#     url(r'^admin/', admin.site.urls),
 ]
