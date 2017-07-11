@@ -6,7 +6,7 @@ Created on 7 apr. 2017
 @author: perhk
 '''
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from .forms import UploadFileForm
 
@@ -89,7 +89,8 @@ def ladda_ner_lista(request):
     return render(request, 'ladda-ner-lista.html', {"fil_lista":flist})
 
 def ladda_ner_fil(request, filnamn):
-#     print(filnamn)
+    if filnamn not in files_to_download:
+        return HttpResponseNotFound('<h1>Filen finns inte</h1>')
     response = HttpResponse(files_to_download[filnamn], content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = "attachment; filename="+filnamn
     return response
