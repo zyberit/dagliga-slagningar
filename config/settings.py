@@ -26,7 +26,7 @@ SECRET_KEY = 'kbgh^f#c+7t%a412%wn*x6$-p_lk1t+q9*95cgp&@=2rtmv-(x'
 DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['dagliga-slagningar.apps.violaberg.nu']
+ALLOWED_HOSTS = ['dagliga-slagningar.apps.violaberg.nu', 'localhost']
 
 # Application definition
 

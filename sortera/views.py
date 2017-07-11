@@ -89,7 +89,7 @@ def ladda_ner_lista(request):
     return render(request, 'ladda-ner-lista.html', {"fil_lista":flist})
 
 def ladda_ner_fil(request, filnamn):
-    print(filnamn)
+#     print(filnamn)
     response = HttpResponse(files_to_download[filnamn], content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = "attachment; filename="+filnamn
     return response
