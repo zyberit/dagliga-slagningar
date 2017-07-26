@@ -98,6 +98,7 @@ def ladda_ner_fil(request, filnamn):
         return HttpResponseNotFound('<h1>Filen finns inte kvar!</h1>')
     response = HttpResponse(files_to_download[filnamn], content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = "attachment; filename="+filnamn
+    del files_to_download[filnamn]
     return response
 
 
