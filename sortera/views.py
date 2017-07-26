@@ -53,9 +53,14 @@ def mk_one_file(rows, filename):
         files_to_download[filename+".xlsx"] = io.BytesIO(save_virtual_workbook(wb))
 
 def rd_data(f):
-    rows = []
+    all_rows = []
     reader = csv.DictReader(io.StringIO(f.read().decode('utf-8')))
     for row in reader:
+        all_rows.append(row)
+    all_rows = sorted(all_rows,key=lambda slagning: slagning['AnvändarID']+" "+slagning['Tidpunkt event'])
+
+    rows = []
+    for row in all_rows:
         if rows and rows[0]['AnvändarID']!=row["AnvändarID"]:
             d = datetime.strptime(rows[0]["Tidpunkt event"], "%b %d %Y %H:%M:%S")
             s = d.strftime("%Y-%m-%d")
@@ -90,7 +95,7 @@ def ladda_ner_lista(request):
 
 def ladda_ner_fil(request, filnamn):
     if filnamn not in files_to_download:
-        return HttpResponseNotFound('<h1>Filen finns inte</h1>')
+        return HttpResponseNotFound('<h1>Filen finns inte kvar!</h1>')
     response = HttpResponse(files_to_download[filnamn], content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = "attachment; filename="+filnamn
     return response
